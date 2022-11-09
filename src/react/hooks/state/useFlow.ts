@@ -1,10 +1,10 @@
 import produce from "immer";
 import { MutableHookResult } from "src/classes/react/StateHookResult";
-import AppModel from "../../models/AppModel";
-import FlowModel from "../../models/FlowModel";
-import { selectFlow } from "../../selectors/app/selectFlow";
-import { setFlow } from "../../setters/app/setFlow";
-import useAppModel from "../../store";
+import AppModel from "../../../data/models/AppModel";
+import FlowModel from "../../../data/models/FlowModel";
+import { selectFlow } from "../../../data/selectors/app/selectFlow";
+import { setFlow } from "../../../data/setters/app/setFlow";
+import useAppModel from "../../../data/store";
 
 export const useFlow = (flowName: string): MutableHookResult<FlowModel> => {
   const flow = useAppModel((store) => selectFlow(flowName, store)),

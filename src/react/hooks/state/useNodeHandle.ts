@@ -1,10 +1,10 @@
-import useAppModel from "../../store";
+import useAppModel from "../../../data/store";
 import produce from "immer";
-import AppModel from "../../models/AppModel";
+import AppModel from "../../../data/models/AppModel";
 import { MutableHookResult } from "src/classes/react/StateHookResult";
-import { selectNodeHandles } from "../../selectors/editor/selectNodeHandles";
+import { selectNodeHandles } from "../../../data/selectors/editor/selectNodeHandles";
 import { NodeHandle } from "src/classes/nodes/definition/io/handles/NodeHandle";
-import { setNodeHandle } from "../../setters/editor/setNodeHandle";
+import { setNodeHandle } from "../../../data/setters/editor/setNodeHandle";
 
 export const useNodeHandle = (
   isInput: boolean,

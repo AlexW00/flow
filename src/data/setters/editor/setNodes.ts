@@ -10,12 +10,6 @@ export const setNodes = (
 ): void => {
   const flow = appModel.flows.find((f) => f.name === flowName);
   if (flow) {
-    console.log(
-      "setNodes from",
-      flow.editorModel.nodes.map((n) => JSON.stringify(n)),
-      "to",
-      newNodes
-    );
     const oldNodes = flow.editorModel.nodes;
     flow.editorModel.nodes = newNodes;
 

@@ -7,7 +7,8 @@ export const useInputs = (
   nodeId: string,
   flowName: string
 ): Inputs | undefined => {
-  return useAppModel((store) =>
+  const inputs = useAppModel((store) =>
     selectInputs(nodeId, selectFlow(flowName, store)?.editorModel)
   );
+  return inputs;
 };
