@@ -20,6 +20,7 @@ export const setOutput = (
   const connectedNodes = selectConnectedNodes(nodeId, false, id, editorModel);
 
   connectedNodes.forEach((connectedNode) => {
+    console.log("setting output");
     connectedNode.node.data.inputs[connectedNode.connectedOn] = output;
   });
 };

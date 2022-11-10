@@ -17,9 +17,11 @@ import { CustomNodeComponent } from "./nodes/CustomNode";
 
 export const Editor = () => {
   const flowName = "example-flow";
-  const nodeTypes = useMemo(() => ({ custom: CustomNodeComponent }), []);
+
   const [nodes, setNodes] = useNodes(flowName);
   const [edges, setEdges] = useEdges(flowName);
+
+  const nodeTypes = useMemo(() => ({ custom: CustomNodeComponent }), []);
 
   console.log("Rendering Editor with nodes:", nodes);
 

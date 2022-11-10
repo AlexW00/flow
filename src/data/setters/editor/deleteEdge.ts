@@ -3,9 +3,9 @@ import EditorModel from "../../models/EditorModel";
 import { selectNode } from "../../selectors/editor/selectNode";
 
 export const deleteEdge = (edge: Edge, editorModel: EditorModel): void => {
-  console.log("deleteEdge", edge);
   const index = editorModel.edges.findIndex((e) => e.id === edge.id);
   if (index !== -1) {
+    console.log("deleteEdge", JSON.stringify(edge));
     editorModel.edges.splice(index, 1);
 
     if (edge.targetHandle) {
@@ -15,10 +15,18 @@ export const deleteEdge = (edge: Edge, editorModel: EditorModel): void => {
         (e) => e.target === edge.target && e.targetHandle === edge.targetHandle
       );
       // if there are no more edges connected to this handle, set the input to null
-      if (targetNode && alternativeEdges.length === 0)
-        targetNode.data.inputs[edge.targetHandle] = undefined;
-      else {
+      if (targetNode && alternativeEdges.length === 0) {
+        console.log(
+          "set node id " +
+            targetNode.id +
+            " " +
+            edge.targetHandle +
+            " undefined"
+        );
+        targetNode.data.inputs[edge.targetHandle] = null;
+      } else {
         // otherwise, set the input to the output of the first edge
+        console.log("set alternativeEdge");
         const connectedNode = selectNode(
           alternativeEdges[0].source,
           editorModel?.nodes
@@ -28,6 +36,7 @@ export const deleteEdge = (edge: Edge, editorModel: EditorModel): void => {
         if (targetNode && connectedHandle)
           targetNode.data.inputs[edge.targetHandle] = connectedHandle;
       }
+      console.log(JSON.stringify(targetNode.data.inputs));
     }
   }
 };

@@ -11,12 +11,10 @@ export const useNodes = (
   flowName: string
 ): MutableHookResult<Node<CustomNodeData>[]> => {
   const nodes = useAppModel(
-      (store) => selectFlow(flowName, store)?.editorModel.nodes
-    ),
-    setter = (nodes: Node<CustomNodeData>[]) => {
-      useAppModel.setState(
-        produce((draft) => setNodes(nodes, flowName, draft))
-      );
-    };
+    (store) => selectFlow(flowName, store)?.editorModel.nodes
+  );
+  const setter = (nodes: Node<CustomNodeData>[]) => {
+    useAppModel.setState(produce((draft) => setNodes(nodes, flowName, draft)));
+  };
   return [nodes, setter];
 };

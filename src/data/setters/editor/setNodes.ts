@@ -17,7 +17,8 @@ export const setNodes = (
       (oldNode) => !newNodes.find((newNode) => newNode.id === oldNode.id)
     );
 
-    console.log("removedNodes", removedNodes);
+    console.log("removedNodes", JSON.stringify(removedNodes));
+    console.log(JSON.stringify(flow.editorModel.edges));
     removedNodes.forEach((removedNode) => {
       flow.editorModel.edges
         .filter(

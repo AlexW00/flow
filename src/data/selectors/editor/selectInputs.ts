@@ -5,8 +5,7 @@ import { selectNode } from "./selectNode";
 export const selectInputs = (
   nodeId: string,
   editorModel: EditorModel
-): Inputs => {
+): Inputs | undefined => {
   const node = selectNode(nodeId, editorModel.nodes);
-  if (node) return node.data.inputs;
-  else return {};
+  return node?.data?.inputs;
 };
