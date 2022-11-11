@@ -7,6 +7,10 @@ import { MutableHookResult } from "src/classes/react/StateHookResult";
 import { setNodes } from "../../../data/setters/editor/setNodes";
 import produce from "immer";
 
+// Returns
+// - the nodes of a specified flow with name flowName
+// - a setter to set new nodes
+
 export const useNodes = (
   flowName: string
 ): MutableHookResult<Node<CustomNodeData>[]> => {

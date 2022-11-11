@@ -14,22 +14,21 @@ import { CustomNodeHandles } from "./CustomNodeHandles";
 export const CustomNodeComponent: FunctionComponent<
   NodeProps<CustomNodeData>
 > = (props: PropsWithChildren<NodeProps<CustomNodeData>>, _context?: any) => {
-  console.log("rendering CustomNodeComponent", props.id);
-  console.log(props);
+  console.log("rendering CustomNodeComponent with ID", props.id);
 
   const updateNodeInternals = useUpdateNodeInternals();
   const flowName = useContext(FlowNameContext);
-  const node = useNode(props.id, flowName);
+  const node = useNode(props.id, flowName); // get the node from Zustand state
+  
   console.log("CustomNodeComponent node:", node);
 
   useEffect(() => {
     updateNodeInternals(props.id);
   }, []);
 
-  const ContentComponent = node?.data?.component;
-  // rendering content first because
-  // at first render, the definition of the handles gets initialized
-  // const content = props.data.component(props.id);
+  // get the component from the node data
+  const ContentComponent = node?.data?.component; 
+
   return (
     <NodeIdContext.Provider value={props.id}>
       {ContentComponent ? ( // <- conditionally render the content

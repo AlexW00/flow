@@ -49,6 +49,7 @@ export const Editor = () => {
       edges={edges}
       onNodesChange={(nodeChanges) => {
         const newNodes = applyNodeChanges(nodeChanges, nodes);
+        console.log("newNodes", newNodes);
         setNodes(newNodes);
       }}
       onEdgesChange={(edgeChanges) => {
