@@ -20,22 +20,25 @@ export const CustomNodeComponent: FunctionComponent<
   const updateNodeInternals = useUpdateNodeInternals();
   const flowName = useContext(FlowNameContext);
   const node = useNode(props.id, flowName);
+  console.log("CustomNodeComponent node:", node);
 
   useEffect(() => {
     updateNodeInternals(props.id);
   }, []);
 
-  const ContentComponent = node.data.component;
+  const ContentComponent = node?.data?.component;
   // rendering content first because
   // at first render, the definition of the handles gets initialized
   // const content = props.data.component(props.id);
   return (
     <NodeIdContext.Provider value={props.id}>
-      <div className="custom-node react-flow__node-default">
-        <CustomNodeHandles isInput={true} />
-        <ContentComponent />
-        <CustomNodeHandles isInput={false} />
-      </div>
+      {ContentComponent ? ( // <- conditionally render the content
+        <div className="custom-node react-flow__node-default">
+          <CustomNodeHandles isInput={true} />
+          <ContentComponent />
+          <CustomNodeHandles isInput={false} />
+        </div>
+      ) : null}
     </NodeIdContext.Provider>
   );
 };
