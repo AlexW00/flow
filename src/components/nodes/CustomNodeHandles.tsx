@@ -2,14 +2,12 @@ import React from "react";
 import { useContext } from "react";
 import { Handle, Position } from "reactflow";
 import { NodeHandles } from "../../classes/nodes/definition/io/handles/NodeHandles";
-import { FlowNameContext } from "../../react/contexts/FlowNameContext";
 import { NodeIdContext } from "../../react/contexts/NodeIdContext";
 import { useNodeHandles } from "../../react/hooks/state/useNodeHandles";
 
 export const CustomNodeHandles = ({ isInput }: { isInput: boolean }) => {
-  const flowName = useContext(FlowNameContext);
   const nodeId = useContext(NodeIdContext);
-  const [nodeHandles] = useNodeHandles(isInput, nodeId, flowName);
+  const [nodeHandles] = useNodeHandles(isInput, nodeId);
 
   const calculateHandleTopOffset = (
     index: number,
@@ -25,6 +23,7 @@ export const CustomNodeHandles = ({ isInput }: { isInput: boolean }) => {
     return keys.map((key, index) => {
       const handleTopOffset = calculateHandleTopOffset(index, keys.length);
       const type = io[key].type;
+      console.log("creating handle", key, type);
       return (
         <Handle
           key={key}

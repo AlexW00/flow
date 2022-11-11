@@ -1,11 +1,5 @@
-import React, {
-  FunctionComponent,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-} from "react";
+import React, { FunctionComponent, PropsWithChildren, useEffect } from "react";
 import { NodeProps, useUpdateNodeInternals } from "reactflow";
-import { FlowNameContext } from "../../react/contexts/FlowNameContext";
 import { useNode } from "../../react/hooks/state/useNode";
 import { CustomNodeData } from "../../classes/nodes/CustomNodeData";
 import { NodeIdContext } from "../../react/contexts/NodeIdContext";
@@ -15,8 +9,7 @@ export const CustomNodeComponent: FunctionComponent<
   NodeProps<CustomNodeData>
 > = (props: PropsWithChildren<NodeProps<CustomNodeData>>, _context?: any) => {
   const updateNodeInternals = useUpdateNodeInternals();
-  const flowName = useContext(FlowNameContext);
-  const node = useNode(props.id, flowName);
+  const node = useNode(props.id);
 
   console.log("rendering CustomNodeComponent", props.id);
 
@@ -28,13 +21,11 @@ export const CustomNodeComponent: FunctionComponent<
 
   return (
     <NodeIdContext.Provider value={props.id}>
-      {node ? (
-        <div className="custom-node react-flow__node-default">
-          <CustomNodeHandles isInput={true} />
-          <ContentComponent />
-          <CustomNodeHandles isInput={false} />
-        </div>
-      ) : null}
+      <div className="custom-node react-flow__node-default">
+        <CustomNodeHandles isInput={true} />
+        <ContentComponent />
+        <CustomNodeHandles isInput={false} />
+      </div>
     </NodeIdContext.Provider>
   );
 };

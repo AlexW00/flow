@@ -1,14 +1,13 @@
 import produce from "immer";
-import { Edge } from "reactflow";
+import { Edge, useReactFlow } from "reactflow";
 import { MutableHookResult } from "src/classes/react/StateHookResult";
-import { selectFlow } from "../../../data/selectors/app/selectFlow";
 import { setEdges } from "../../../data/setters/editor/setEdges";
 import useAppModel from "../../../data/store";
+import { useFlowName } from "../context/useFlowName";
 
-export const useEdges = (flowName: string): MutableHookResult<Edge[]> => {
-  const edges = useAppModel(
-    (store) => selectFlow(flowName, store)?.editorModel.edges
-  );
+export const useEdges = (): MutableHookResult<Edge[]> => {
+  const flowName = useFlowName(),
+    edges = useReactFlow().getEdges();
   const setter = (edges: Edge[]) => {
     useAppModel.setState(produce((draft) => setEdges(edges, flowName, draft)));
   };

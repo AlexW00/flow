@@ -1,11 +1,12 @@
+import { Node } from "reactflow";
+import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
 import { OutputData } from "src/classes/nodes/outputs/Outputs";
-import EditorModel from "../../models/EditorModel";
+
 import { selectInputs } from "./selectInputs";
 
 export const selectInput = (
   inputId: string,
-  nodeId: string,
-  editor: EditorModel
+  node: Node<CustomNodeData>
 ): OutputData | undefined => {
-  return selectInputs(nodeId, editor)[inputId];
+  return selectInputs(node)[inputId];
 };

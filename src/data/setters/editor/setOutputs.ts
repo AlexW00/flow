@@ -21,7 +21,8 @@ export const setOutputs = (
       nodeId,
       false,
       outputId,
-      editorModel
+      editorModel.edges,
+      editorModel.nodes
     );
     const output = outputs[outputId];
 

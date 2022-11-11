@@ -1,11 +1,10 @@
+import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
 import { Inputs } from "../../../classes/nodes/outputs/Inputs";
-import EditorModel from "../../models/EditorModel";
-import { selectNode } from "./selectNode";
+
+import { Node } from "reactflow";
 
 export const selectInputs = (
-  nodeId: string,
-  editorModel: EditorModel
+  node: Node<CustomNodeData>
 ): Inputs | undefined => {
-  const node = selectNode(nodeId, editorModel.nodes);
   return node?.data?.inputs;
 };

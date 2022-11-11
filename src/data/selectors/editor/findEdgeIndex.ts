@@ -1,5 +1,5 @@
-import EditorModel from "../../models/EditorModel";
+import { Edge } from "reactflow";
 
-export const findEdgeIndex = (id: string, editorModel: EditorModel): number => {
-  return editorModel.edges.findIndex((e) => e.id === id);
+export const findEdgeIndex = (id: string, edges: Edge[]): number => {
+  return edges.findIndex((e) => e.id === id);
 };

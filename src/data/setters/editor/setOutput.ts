@@ -17,7 +17,13 @@ export const setOutput = (
   if (node) node.data.outputs[id] = output;
 
   // update inputs
-  const connectedNodes = selectConnectedNodes(nodeId, false, id, editorModel);
+  const connectedNodes = selectConnectedNodes(
+    nodeId,
+    false,
+    id,
+    editorModel.edges,
+    editorModel.nodes
+  );
 
   connectedNodes.forEach((connectedNode) => {
     console.log("setting output");

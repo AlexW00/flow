@@ -5,20 +5,21 @@ import { MutableHookResult } from "src/classes/react/StateHookResult";
 import { setNodeHandles } from "../../../data/setters/editor/setNodeHandles";
 import { NodeHandles } from "src/classes/nodes/definition/io/handles/NodeHandles";
 import { selectNodeHandles } from "../../../data/selectors/editor/selectNodeHandles";
+import { useFlowName } from "../context/useFlowName";
+import { useNode } from "./useNode";
 
 export const useNodeHandles = (
   isInput: boolean,
-  nodeId: string,
-  flowName: string
+  nodeId: string
 ): MutableHookResult<NodeHandles> => {
-  const nodeDefinition = useAppModel((store) =>
-      selectNodeHandles(isInput, nodeId, flowName, store)
-    ),
+  const flowName = useFlowName(),
+    node = useNode(nodeId),
+    handles = selectNodeHandles(isInput, node),
     setter = (handles: NodeHandles) =>
       useAppModel.setState(
         produce((draft: AppModel) =>
           setNodeHandles(isInput, handles, nodeId, flowName, draft)
         )
       );
-  return [nodeDefinition, setter];
+  return [handles, setter];
 };

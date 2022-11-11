@@ -1,31 +1,25 @@
-import AppModel from "../../models/AppModel";
 import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
 import { Node } from "reactflow";
 import { deleteEdge } from "./deleteEdge";
+import FlowModel from "src/data/models/FlowModel";
 
 export const setNodes = (
   newNodes: Node<CustomNodeData>[],
-  flowName: string,
-  appModel: AppModel
+  flow: FlowModel
 ): void => {
-  const flow = appModel.flows.find((f) => f.name === flowName);
-  if (flow) {
-    const oldNodes = flow.editorModel.nodes;
-    flow.editorModel.nodes = newNodes;
+  const oldNodes = flow.editorModel.nodes;
+  flow.editorModel.nodes = newNodes;
 
-    const removedNodes = oldNodes.filter(
-      (oldNode) => !newNodes.find((newNode) => newNode.id === oldNode.id)
-    );
+  const removedNodes = oldNodes.filter(
+    (oldNode) => !newNodes.find((newNode) => newNode.id === oldNode.id)
+  );
 
-    console.log("removedNodes", JSON.stringify(removedNodes));
-    console.log(JSON.stringify(flow.editorModel.edges));
-    removedNodes.forEach((removedNode) => {
-      flow.editorModel.edges
-        .filter(
-          (edge) =>
-            edge.source === removedNode.id || edge.target === removedNode.id
-        )
-        .forEach((edge) => deleteEdge(edge, flow.editorModel));
-    });
-  }
+  removedNodes.forEach((removedNode) => {
+    flow.editorModel.edges
+      .filter(
+        (edge) =>
+          edge.source === removedNode.id || edge.target === removedNode.id
+      )
+      .forEach((edge) => deleteEdge(edge, flow.editorModel));
+  });
 };

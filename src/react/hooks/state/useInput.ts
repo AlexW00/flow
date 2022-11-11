@@ -1,15 +1,9 @@
 import { OutputData } from "../../../classes/nodes/outputs/Outputs";
 import { selectInput } from "../../../data/selectors/editor/selectInput";
-import useAppModel from "../../../data/store";
-import { selectFlow } from "../../../data/selectors/app/selectFlow";
+import { useNode } from "./useNode";
 
-export const useInput = (
-  inputId: string,
-  nodeId: string,
-  flowName: string
-): OutputData => {
-  const input = useAppModel((store) =>
-    selectInput(inputId, nodeId, selectFlow(flowName, store)?.editorModel)
-  );
+export const useInput = (inputId: string, nodeId: string): OutputData => {
+  const node = useNode(nodeId);
+  const input = selectInput(inputId, node);
   return input;
 };

@@ -9,17 +9,23 @@ import ReactFlow, {
   applyEdgeChanges,
 } from "reactflow";
 import "reactflow/dist/style.css";
+import { useFlowName } from "src/react/hooks/context/useFlowName";
+import { useEdges } from "src/react/hooks/state/useEdges";
+import { useFlow } from "src/react/hooks/state/useFlow";
+import { useNodes } from "src/react/hooks/state/useNodes";
+
 import { canConnect } from "../classes/nodes/definition/io/handles/types/NodeHandleType";
 import { selectNode } from "../data/selectors/editor/selectNode";
-import { useEdges } from "../react/hooks/state/useEdges";
-import { useNodes } from "../react/hooks/state/useNodes";
 import { CustomNodeComponent } from "./nodes/CustomNode";
 
 export const Editor = () => {
-  const flowName = "example-flow";
+  const flowName = useFlowName();
+  const [flow] = useFlow(flowName);
 
-  const [nodes, setNodes] = useNodes(flowName);
-  const [edges, setEdges] = useEdges(flowName);
+  const nodes = flow.editorModel.nodes;
+  const setNodes = useNodes()[1];
+  const edges = flow.editorModel.edges;
+  const setEdges = useEdges()[1];
 
   const nodeTypes = useMemo(() => ({ custom: CustomNodeComponent }), []);
 

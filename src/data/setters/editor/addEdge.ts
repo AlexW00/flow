@@ -7,11 +7,9 @@ export const addEdge = (edge: Edge, editorModel: EditorModel): void => {
   editorModel.edges.push(edge);
 
   if (edge.targetHandle && edge.sourceHandle) {
-    // update the input of the target node
     const targetNode = selectNode(edge.target, editorModel.nodes),
       sourceNode = selectNode(edge.source, editorModel.nodes);
     if (sourceNode && targetNode) {
-      console.log("updating input");
       targetNode.data.inputs[edge.targetHandle] =
         sourceNode.data.outputs[edge.sourceHandle];
     }

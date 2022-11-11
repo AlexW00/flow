@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactFlowProvider } from "reactflow";
 import { FlowNameContext } from "../react/contexts/FlowNameContext";
 import { max } from "../styles/layout";
 
@@ -9,7 +10,9 @@ export const Flow = () => {
     <div style={max}>
       <h1>Flow XY</h1>
       <FlowNameContext.Provider value="example-flow">
-        <Editor />
+        <ReactFlowProvider>
+          <Editor />
+        </ReactFlowProvider>
       </FlowNameContext.Provider>
     </div>
   );

@@ -1,5 +1,5 @@
-import EditorModel from "../../models/EditorModel";
+import { Node } from "reactflow";
 
-export const findNodeIndex = (id: string, editorModel: EditorModel): number => {
-  return editorModel.nodes.findIndex((n) => n.id === id);
+export const findNodeIndex = (id: string, nodes: Node[]): number => {
+  return nodes.findIndex((n) => n.id === id);
 };

@@ -17,26 +17,16 @@ export const ExampleNodeComponent = () => {
   const id = useContext(NodeIdContext);
   console.log("Rendering " + id + " in flow named", flowName);
 
-  const setNodeDefinition = useNodeDefinition(id, flowName)[1];
+  const setNodeDefinition = useNodeDefinition(id)[1];
   useEffect(() => {
     setNodeDefinition(ExampleNode);
   }, []);
 
-  const inputs = useInputs(id, flowName);
-  const [outputs] = useOutputs(id, flowName);
-  const setOutput = useOutput("output1", id, flowName)[1];
-  const setInput2HandleType = useNodeHandleType(
-    true,
-    "input2",
-    id,
-    flowName
-  )[1];
-  const setOutput2HandleType = useNodeHandleType(
-    false,
-    "output2",
-    id,
-    flowName
-  )[1];
+  const inputs = useInputs(id);
+  const [outputs] = useOutputs(id);
+  const setOutput = useOutput("output1", id)[1];
+  const setInput2HandleType = useNodeHandleType(true, "input2", id)[1];
+  const setOutput2HandleType = useNodeHandleType(false, "output2", id)[1];
 
   console.log("CustomNodeComponent", id, inputs, outputs);
 
