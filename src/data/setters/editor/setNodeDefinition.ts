@@ -12,5 +12,6 @@ export const setNodeDefinition = (
   // update outputs
   const editorModel = selectFlow(flowName, appModel).editorModel;
   const node = selectNode(nodeId, editorModel.nodes);
-  if (node) node.data.definition = definition;
+
+  node.data.definition = definition;
 };

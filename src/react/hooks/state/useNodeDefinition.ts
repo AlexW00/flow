@@ -1,6 +1,5 @@
 import useAppModel from "../../../data/store";
 import produce from "immer";
-import AppModel from "../../../data/models/AppModel";
 import { MutableHookResult } from "src/classes/react/StateHookResult";
 import { CustomNodeDefinition } from "src/classes/nodes/definition/NodeDefinition";
 import { setNodeDefinition } from "../../../data/setters/editor/setNodeDefinition";
@@ -15,7 +14,7 @@ export const useNodeDefinition = (
     definition = node?.data?.definition,
     setter = (definition: CustomNodeDefinition) =>
       useAppModel.setState(
-        produce((draft: AppModel) =>
+        produce((draft) =>
           setNodeDefinition(definition, nodeId, flowName, draft)
         )
       );

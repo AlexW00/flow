@@ -1,5 +1,5 @@
 import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
-import { Node, useReactFlow } from "reactflow";
+import { Node } from "reactflow";
 import useAppModel from "../../../data/store";
 
 import { MutableHookResult } from "src/classes/react/StateHookResult";
@@ -10,7 +10,9 @@ import { selectFlow } from "src/data/selectors/app/selectFlow";
 
 export const useNodes = (): MutableHookResult<Node<CustomNodeData>[]> => {
   const flowName = useFlowName(),
-    nodes = useReactFlow().getNodes(),
+    nodes = useAppModel(
+      (state) => selectFlow(flowName, state).editorModel.nodes
+    ),
     setter = (nodes: Node<CustomNodeData>[]) => {
       useAppModel.setState(
         produce((draft) => setNodes(nodes, selectFlow(flowName, draft)))

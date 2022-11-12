@@ -4,6 +4,7 @@ import { useNode } from "../../react/hooks/state/useNode";
 import { CustomNodeData } from "../../classes/nodes/CustomNodeData";
 import { NodeIdContext } from "../../react/contexts/NodeIdContext";
 import { CustomNodeHandles } from "./CustomNodeHandles";
+import { useNodeHandles } from "src/react/hooks/state/useNodeHandles";
 
 export const CustomNodeComponent: FunctionComponent<
   NodeProps<CustomNodeData>
@@ -18,13 +19,25 @@ export const CustomNodeComponent: FunctionComponent<
   }, []);
 
   const ContentComponent = node?.data?.component;
+  const contentComponent = <ContentComponent />; // render it first to get the handles
+
+  const [inputHandles] = useNodeHandles(true, props.id);
+  const [outputHandles] = useNodeHandles(false, props.id);
+
+  console.log(
+    "CustomNodeComponent io",
+    props.id,
+    node.data,
+    inputHandles,
+    outputHandles
+  );
 
   return (
     <NodeIdContext.Provider value={props.id}>
       <div className="custom-node react-flow__node-default">
-        <CustomNodeHandles isInput={true} />
-        <ContentComponent />
-        <CustomNodeHandles isInput={false} />
+        <CustomNodeHandles isInput={true} nodeHandles={inputHandles} />
+        {contentComponent}
+        <CustomNodeHandles isInput={false} nodeHandles={outputHandles} />
       </div>
     </NodeIdContext.Provider>
   );

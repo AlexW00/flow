@@ -7,6 +7,7 @@ export const selectNodeHandles = (
   isInput: boolean,
   node: Node<CustomNodeData>
 ): NodeHandles => {
+  console.log("selectNodeHandles", isInput, node);
   const definition = node?.data?.definition;
   const handles = isInput ? definition?.io?.inputs : definition?.io?.outputs;
   return handles;
