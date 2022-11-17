@@ -1,5 +1,5 @@
 import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
-import { Node } from "reactflow";
+import { Node } from "react-flow-renderer";
 import useAppModel from "../../../data/store";
 
 import { MutableHookResult } from "src/classes/react/StateHookResult";

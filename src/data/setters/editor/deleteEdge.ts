@@ -1,4 +1,4 @@
-import { Edge } from "reactflow";
+import { Edge } from "react-flow-renderer";
 import EditorModel from "../../models/EditorModel";
 import { selectNode } from "../../selectors/editor/selectNode";
 

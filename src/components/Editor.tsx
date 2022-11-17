@@ -1,17 +1,14 @@
 import React, { useMemo } from "react";
 import ReactFlow, {
-  MiniMap,
-  Controls,
+  addEdge,
+  applyEdgeChanges,
+  applyNodeChanges,
   Background,
   Connection,
-  addEdge,
-  applyNodeChanges,
-  applyEdgeChanges,
-} from "reactflow";
-import "reactflow/dist/style.css";
-import { useFlowName } from "src/react/hooks/context/useFlowName";
+  Controls,
+  MiniMap,
+} from "react-flow-renderer";
 import { useEdges } from "src/react/hooks/state/useEdges";
-import { useFlow } from "src/react/hooks/state/useFlow";
 import { useNodes } from "src/react/hooks/state/useNodes";
 
 import { canConnect } from "../classes/nodes/definition/io/handles/types/NodeHandleType";
@@ -19,17 +16,12 @@ import { selectNode } from "../data/selectors/editor/selectNode";
 import { CustomNodeComponent } from "./nodes/CustomNode";
 
 export const Editor = () => {
-  const flowName = useFlowName();
-  const [flow] = useFlow(flowName);
-
-  const nodes = flow.editorModel.nodes;
-  const setNodes = useNodes()[1];
-  const edges = flow.editorModel.edges;
-  const setEdges = useEdges()[1];
+  const [nodes, setNodes] = useNodes();
+  const [edges, setEdges] = useEdges();
 
   const nodeTypes = useMemo(() => ({ custom: CustomNodeComponent }), []);
 
-  console.log("Rendering Editor with nodes:", nodes);
+  console.log("Rendering Editor with nodes, edges:", nodes, edges);
 
   const handleConnect = (connection: Connection) => {
     const sourceNode = selectNode(connection.source, nodes);

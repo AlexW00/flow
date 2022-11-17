@@ -1,5 +1,5 @@
 import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
-import { Edge, Node } from "reactflow";
+import { Edge, Node } from "react-flow-renderer";
 import { selectNode } from "./selectNode";
 
 export const selectConnectedNodes = (

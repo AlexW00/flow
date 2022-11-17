@@ -1,4 +1,4 @@
-import { Edge, Node } from "reactflow";
+import { Edge, Node } from "react-flow-renderer";
 import { ExampleNodeComponent } from "../../components/nodes/ExampleNode";
 import EditorModel from "../models/EditorModel";
 

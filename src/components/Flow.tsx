@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactFlowProvider } from "reactflow";
+import { ReactFlowProvider } from "react-flow-renderer";
 import { FlowNameContext } from "../react/contexts/FlowNameContext";
 import { max } from "../styles/layout";
 

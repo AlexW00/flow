@@ -1,4 +1,4 @@
-import { Edge } from "reactflow";
+import { Edge } from "react-flow-renderer";
 import AppModel from "../../models/AppModel";
 import { selectFlow } from "../../selectors/app/selectFlow";
 import { addEdge } from "./addEdge";

@@ -1,18 +1,13 @@
 import React, { useContext, useEffect } from "react";
-import { NumberHandle } from "../../classes/nodes/definition/io/handles/types/base/NumberHandle";
-
+import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
 import { ObjectHandle } from "../../classes/nodes/definition/io/handles/types/base/ObjectHandle";
 import { StringHandle } from "../../classes/nodes/definition/io/handles/types/base/StringHandle";
 import { CustomNodeDefinition } from "../../classes/nodes/definition/NodeDefinition";
 import { FlowNameContext } from "../../react/contexts/FlowNameContext";
 import { NodeIdContext } from "../../react/contexts/NodeIdContext";
-import { useInputs } from "../../react/hooks/state/useInputs";
 import { useNodeDefinition } from "../../react/hooks/state/useNodeDefinition";
-import { useNodeHandleType } from "../../react/hooks/state/useNodeHandleType";
-import { useOutput } from "../../react/hooks/state/useOutput";
-import { useOutputs } from "../../react/hooks/state/useOutputs";
 
-export const ExampleNodeComponent = () => {
+export const ExampleNodeComponent = ({ data }: { data: CustomNodeData }) => {
   const flowName = useContext(FlowNameContext);
   const id = useContext(NodeIdContext);
   console.log("Rendering " + id + " in flow named", flowName);
@@ -22,23 +17,17 @@ export const ExampleNodeComponent = () => {
     setNodeDefinition(ExampleNode);
   }, []);
 
-  const inputs = useInputs(id);
-  const [outputs] = useOutputs(id);
-  const setOutput = useOutput("output1", id)[1];
-  const setInput2HandleType = useNodeHandleType(true, "input2", id)[1];
-  const setOutput2HandleType = useNodeHandleType(false, "output2", id)[1];
+  const inputs = data.inputs;
+  const outputs = data.outputs;
 
   console.log("CustomNodeComponent", id, inputs, outputs);
 
   const onClickButton = () => {
     console.log("onClickButton", outputs);
-    const newOutput = (outputs.output1 ?? "") + "!";
-    setOutput(newOutput);
   };
 
   const changeOutputType = () => {
-    setInput2HandleType(NumberHandle);
-    setOutput2HandleType(NumberHandle);
+    console.log("changeOutputType");
   };
 
   return (

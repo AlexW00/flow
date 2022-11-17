@@ -1,4 +1,4 @@
-import { Edge, Node } from "reactflow";
+import { Edge, Node } from "react-flow-renderer";
 import { CustomNodeData } from "../../classes/nodes/CustomNodeData";
 type EditorModel = {
   nodes: Node<CustomNodeData>[];

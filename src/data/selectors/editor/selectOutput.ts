@@ -1,4 +1,4 @@
-import { Node } from "reactflow";
+import { Node } from "react-flow-renderer";
 import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
 import { OutputData } from "../../../classes/nodes/outputs/Outputs";
 import { selectOutputs } from "./selectOutputs";
