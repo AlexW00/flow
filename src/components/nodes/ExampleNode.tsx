@@ -5,16 +5,14 @@ import { useSetOutput } from "src/react/hooks/state/setters/useSetOutput";
 import { ObjectHandle } from "../../classes/nodes/definition/io/handles/types/base/ObjectHandle";
 import { StringHandle } from "../../classes/nodes/definition/io/handles/types/base/StringHandle";
 import { CustomNodeDefinition } from "../../classes/nodes/definition/NodeDefinition";
-import { FlowNameContext } from "../../react/contexts/FlowNameContext";
 import { NodeIdContext } from "../../react/contexts/NodeIdContext";
 
 export const ExampleNodeComponent = ({
   inputs,
   outputs,
 }: CustomNodeComponentProps) => {
-  const flowName = useContext(FlowNameContext);
   const id = useContext(NodeIdContext);
-  console.log("Rendering " + id + " in flow named", flowName);
+  console.log("Rendering Example Node with id" + id);
 
   const setNodeDefinition = useSetDefinition();
   const setNodeOutput1 = useSetOutput("output1");
@@ -23,10 +21,7 @@ export const ExampleNodeComponent = ({
     setNodeDefinition(ExampleNode);
   }, []);
 
-  console.log("CustomNodeComponent", id, inputs, outputs);
-
   const onClickButton = () => {
-    console.log("onClickButton", outputs);
     setNodeOutput1(outputs.output1 + "!");
   };
 

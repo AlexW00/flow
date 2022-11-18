@@ -23,7 +23,7 @@ export const Editor = () => {
 
   const nodeTypes = useMemo(() => ({ custom: CustomNodeContainer }), []);
 
-  console.log("Rendering Editor with nodes, edges:", nodes, edges);
+  console.log("Rendering Editor");
 
   const handleConnect = (connection: Connection) => {
     const sourceNode = selectNode(connection.source, nodes);

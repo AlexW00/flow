@@ -26,7 +26,6 @@ export const setOutput = (
   );
 
   connectedNodes.forEach((connectedNode) => {
-    console.log("setting output");
     connectedNode.node.data.inputs[connectedNode.connectedOn] = output;
   });
 };
