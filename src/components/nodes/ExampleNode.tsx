@@ -1,18 +1,19 @@
 import React, { useContext, useEffect } from "react";
 import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
+import { useSetNodeDefinition } from "src/react/hooks/state/definition/useSetNodeDefinition";
 import { ObjectHandle } from "../../classes/nodes/definition/io/handles/types/base/ObjectHandle";
 import { StringHandle } from "../../classes/nodes/definition/io/handles/types/base/StringHandle";
 import { CustomNodeDefinition } from "../../classes/nodes/definition/NodeDefinition";
 import { FlowNameContext } from "../../react/contexts/FlowNameContext";
 import { NodeIdContext } from "../../react/contexts/NodeIdContext";
-import { useNodeDefinition } from "../../react/hooks/state/useNodeDefinition";
 
 export const ExampleNodeComponent = ({ data }: { data: CustomNodeData }) => {
   const flowName = useContext(FlowNameContext);
   const id = useContext(NodeIdContext);
   console.log("Rendering " + id + " in flow named", flowName);
 
-  const setNodeDefinition = useNodeDefinition(id)[1];
+  const setNodeDefinition = useSetNodeDefinition();
+
   useEffect(() => {
     setNodeDefinition(ExampleNode);
   }, []);
