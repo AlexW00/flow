@@ -10,7 +10,8 @@ export const deleteEdge = (edge: Edge, editorModel: EditorModel): void => {
 
     if (edge.targetHandle) {
       // update the input of the target node
-      const targetNode = selectNode(edge.target, editorModel?.nodes);
+      const targetNode = selectNode(edge.target, editorModel.nodes);
+
       const alternativeEdges = editorModel.edges.filter(
         (e) => e.target === edge.target && e.targetHandle === edge.targetHandle
       );
@@ -23,7 +24,7 @@ export const deleteEdge = (edge: Edge, editorModel: EditorModel): void => {
             edge.targetHandle +
             " undefined"
         );
-        targetNode.data.inputs[edge.targetHandle] = null;
+        targetNode.data.inputs[edge.targetHandle] = undefined;
       } else {
         // otherwise, set the input to the output of the first edge
         console.log("set alternativeEdge");

@@ -12,7 +12,10 @@ export const useSetNodes = (): Setter<Node<CustomNodeData>[]> => {
   const flowName = useFlowName(),
     setter = (nodes: Node<CustomNodeData>[]) => {
       useAppModel.setState(
-        produce((draft) => setNodes(nodes, selectFlow(flowName, draft)))
+        produce((draft) => {
+          const flow = selectFlow(flowName, draft);
+          setNodes(nodes, flow.editorModel);
+        })
       );
     };
   return setter;

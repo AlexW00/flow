@@ -6,7 +6,6 @@ export const addEdge = (edge: Edge, editorModel: EditorModel): void => {
   console.log("addEdge", edge, JSON.stringify(editorModel.edges));
   editorModel.edges = editorModel.edges.filter((e) => e.id !== edge.id);
   editorModel.edges = [...editorModel.edges, edge];
-  console.log("addEdge edges", editorModel.edges);
 
   if (edge.targetHandle && edge.sourceHandle) {
     const targetNode = selectNode(edge.target, editorModel.nodes),
