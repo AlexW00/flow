@@ -1,14 +1,13 @@
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
-import { useNodeHandles } from "src/react/hooks/state/useNodeHandles";
 import { NodeHandles } from "../../classes/nodes/definition/io/handles/NodeHandles";
 
 export const CustomNodeHandles = ({
   isInput,
-  nodeId,
+  handles,
 }: {
   isInput: boolean;
-  nodeId: string;
+  handles: NodeHandles;
 }) => {
   const calculateHandleTopOffset = (
     index: number,
@@ -17,8 +16,6 @@ export const CustomNodeHandles = ({
     const offset = 100 / (numHandles + 1);
     return `${offset * (index + 1)}%`;
   };
-
-  const [handles] = useNodeHandles(isInput, nodeId);
 
   const mapHandles = (io: NodeHandles, isInput: boolean): JSX.Element[] => {
     const keys = Object.keys(io);

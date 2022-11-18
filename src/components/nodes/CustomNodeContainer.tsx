@@ -4,7 +4,7 @@ import { CustomNodeData } from "../../classes/nodes/CustomNodeData";
 import { NodeIdContext } from "../../react/contexts/NodeIdContext";
 import { CustomNodeHandles } from "./CustomNodeHandles";
 
-export const CustomNodeComponent: FunctionComponent<
+export const CustomNodeContainer: FunctionComponent<
   NodeProps<CustomNodeData>
 > = (props: PropsWithChildren<NodeProps<CustomNodeData>>, _context?: any) => {
   const updateNodeInternals = useUpdateNodeInternals();
@@ -13,14 +13,24 @@ export const CustomNodeComponent: FunctionComponent<
     updateNodeInternals(props.id);
   }, []);
 
-  const ContentComponent = props.data.component;
+  const CustomNodeComponent = props.data.component;
 
   return (
     <NodeIdContext.Provider value={props.id}>
       <div className="custom-node react-flow__node-default">
-        <CustomNodeHandles isInput={true} nodeId={props.id} />
-        <ContentComponent data={props.data} />
-        <CustomNodeHandles isInput={false} nodeId={props.id} />
+        <CustomNodeHandles
+          isInput={true}
+          handles={props.data.definition.io.inputs}
+        />
+        <CustomNodeComponent
+          outputs={props.data.outputs}
+          inputs={props.data.inputs}
+          definition={props.data.definition}
+        />
+        <CustomNodeHandles
+          isInput={false}
+          handles={props.data.definition.io.outputs}
+        />
       </div>
     </NodeIdContext.Provider>
   );

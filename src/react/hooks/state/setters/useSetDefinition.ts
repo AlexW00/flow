@@ -6,7 +6,7 @@ import { useFlowName } from "../../context/useFlowName";
 import { Setter } from "src/classes/react/StateHookResult";
 import { useNodeId } from "../../context/useNodeId";
 
-export const useSetNodeDefinition = (): Setter<CustomNodeDefinition> => {
+export const useSetDefinition = (): Setter<CustomNodeDefinition> => {
   const flowName = useFlowName(),
     nodeId = useNodeId(),
     setter = (definition: CustomNodeDefinition) =>

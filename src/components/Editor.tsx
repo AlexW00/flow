@@ -8,18 +8,18 @@ import ReactFlow, {
   Controls,
   MiniMap,
 } from "react-flow-renderer";
-import { useEdges } from "src/react/hooks/state/useEdges";
-import { useNodes } from "src/react/hooks/state/useNodes";
+import { useEdges } from "src/react/hooks/state/combined/useEdges";
+import { useNodes } from "src/react/hooks/state/combined/useNodes";
 
 import { canConnect } from "../classes/nodes/definition/io/handles/types/NodeHandleType";
 import { selectNode } from "../data/selectors/editor/selectNode";
-import { CustomNodeComponent } from "./nodes/CustomNode";
+import { CustomNodeContainer } from "./nodes/CustomNodeContainer";
 
 export const Editor = () => {
   const [nodes, setNodes] = useNodes();
   const [edges, setEdges] = useEdges();
 
-  const nodeTypes = useMemo(() => ({ custom: CustomNodeComponent }), []);
+  const nodeTypes = useMemo(() => ({ custom: CustomNodeContainer }), []);
 
   console.log("Rendering Editor with nodes, edges:", nodes, edges);
 
@@ -36,6 +36,7 @@ export const Editor = () => {
       canConnect(sourceHandleType, targetHandleType)
     ) {
       const newEdges = addEdge(connection, edges);
+      console.log("newEdges", newEdges);
       setEdges(newEdges);
     } else {
       console.log("Cannot connect", sourceHandleType, targetHandleType);
