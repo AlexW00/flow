@@ -9,7 +9,7 @@ export const wrapContent: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
   flex: "1 1 auto",
-  overflow: "auto",
+  overflow: "clip",
   width: "auto",
   height: "auto",
 };

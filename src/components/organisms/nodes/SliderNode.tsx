@@ -1,3 +1,9 @@
+import {
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+} from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { CustomNodeComponentProps } from "src/classes/nodes/definition/CustomNodeComponent";
 import { NumberHandle } from "src/classes/nodes/definition/io/handles/types/base/NumberHandle";
@@ -44,17 +50,20 @@ export const SliderNodeComponent = ({
 
   return (
     <>
-      <input
-        type="range"
+      <Slider
+        aria-label="slider-ex-1"
         className="nodrag"
-        value={outputs.output ?? 0}
+        defaultValue={DEFAULT.min}
         min={data.min ?? DEFAULT.min}
         max={data.max ?? DEFAULT.max}
         step={data.step ?? DEFAULT.step}
-        onChange={(e) => handleValueChange(Number.parseInt(e.target.value))}
-        style={{ marginBottom: "20px" }}
-        data-tip="test"
-      />
+        onChange={handleValueChange}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
       <PropertyContainerComponent>
         <NumberPropertyComponent
           name="Min"

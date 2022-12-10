@@ -1,5 +1,5 @@
 import React from "react";
-import ReactJson from "react-json-view";
+// import ReactJson from "react-json-view";
 import { ObjectViewerComponent } from "../atoms/viewers/ObjectViewer";
 import { WebViewerComponent } from "../atoms/viewers/WebViewer";
 

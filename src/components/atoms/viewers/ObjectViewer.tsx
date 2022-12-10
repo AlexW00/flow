@@ -1,5 +1,4 @@
 import React from "react";
-import ReactJson from "react-json-view";
 
 export const ObjectViewerComponent = ({
   object,
@@ -13,7 +12,8 @@ export const ObjectViewerComponent = ({
         maxHeight: "50em",
       }}
     >
-      <ReactJson src={object} enableClipboard={false} />
+      {/* <ReactJson src={object} enableClipboard={false} /> */}
+      {JSON.stringify(object)} // @todo proper json viewer
     </div>
   );
 };

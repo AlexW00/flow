@@ -1,9 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Flow } from "./components/templates/Flow";
+import { ChakraProvider } from "@chakra-ui/react";
+import { createRoot } from "react-dom/client";
 
 const container = document.getElementById("app");
-ReactDOM.render(<Flow />, container);
+const root = createRoot(container);
+root.render(
+  <ChakraProvider>
+    <Flow />
+  </ChakraProvider>
+);
 
 container.style.height = "100vh";
 container.style.width = "100vw";

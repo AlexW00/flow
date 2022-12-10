@@ -1,3 +1,4 @@
+import { Collapse } from "@chakra-ui/react";
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { NodeProps } from "react-flow-renderer";
 import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
@@ -31,27 +32,21 @@ export const NodeComponent: FunctionComponent<NodeProps<CustomNodeData>> = (
             setIsCollapsed={setIsCollapsed}
           />
 
-          <div
-            style={{
-              ...wrapContent,
-              padding: "10px",
-              display: isCollapsed ? "none" : "inherit",
-            }}
-          >
+          <Collapse in={!isCollapsed} animateOpacity>
             <CustomNodeComponent
               outputs={props.data.outputs}
               inputs={props.data.inputs}
               definition={props.data.definition}
               data={props.data.data}
             />
-          </div>
+          </Collapse>
         </div>
-
-        <HandlesComponent
-          isInput={false}
-          handles={props.data.definition.io.outputs}
-        />
       </div>
+
+      <HandlesComponent
+        isInput={false}
+        handles={props.data.definition.io.outputs}
+      />
     </NodeIdContext.Provider>
   );
 };
