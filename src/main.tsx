@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Flow } from "./components/Flow";
+import { Flow } from "./components/templates/Flow";
 
 const container = document.getElementById("app");
 ReactDOM.render(<Flow />, container);

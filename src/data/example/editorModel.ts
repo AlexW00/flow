@@ -1,30 +1,68 @@
 import { Edge, Node } from "react-flow-renderer";
-import { ExampleNodeComponent } from "../../components/nodes/ExampleNode";
+import { FunctionNodeComponent } from "src/components/organisms/nodes/FunctionNode";
+import { ExampleNodeComponent } from "src/components/organisms/nodes/ExampleNode";
 import EditorModel from "../models/EditorModel";
+import { ViewerNodeComponent } from "src/components/organisms/nodes/ViewerNode";
+import { TextInputNodeComponent } from "src/components/organisms/nodes/TextInputNode";
+import { SliderNodeComponent } from "src/components/organisms/nodes/SliderNode";
 
 const nodes = [
   {
     id: "1",
-    type: "input",
-    data: { label: "Input" },
-    position: { x: 250, y: 25 },
+    type: "custom",
+    data: {
+      component: ExampleNodeComponent,
+      definition: {
+        io: {
+          inputs: {},
+          outputs: {},
+        },
+      },
+      outputs: {},
+      inputs: {},
+      data: {},
+    },
+    position: { x: 400, y: 400 },
   },
   {
     id: "2",
-    data: { label: "Default" },
-    position: { x: 100, y: 125 },
+    type: "custom",
+    data: {
+      component: TextInputNodeComponent,
+      definition: {
+        io: {
+          inputs: {},
+          outputs: {},
+        },
+      },
+      outputs: {},
+      inputs: {},
+      data: {},
+    },
+    position: { x: 300, y: 300 },
   },
   {
     id: "3",
-    type: "output",
-    data: { label: "Output" },
-    position: { x: 250, y: 250 },
+    type: "custom",
+    data: {
+      component: FunctionNodeComponent,
+      definition: {
+        io: {
+          inputs: {},
+          outputs: {},
+        },
+      },
+      outputs: {},
+      inputs: {},
+      data: {},
+    },
+    position: { x: 0, y: 0 },
   },
   {
     id: "4",
     type: "custom",
     data: {
-      component: ExampleNodeComponent,
+      component: FunctionNodeComponent,
       definition: {
         io: {
           inputs: {},
@@ -33,14 +71,15 @@ const nodes = [
       },
       outputs: {},
       inputs: {},
+      data: {},
     },
-    position: { x: 400, y: 400 },
+    position: { x: 0, y: 200 },
   },
   {
     id: "5",
     type: "custom",
     data: {
-      component: ExampleNodeComponent,
+      component: ViewerNodeComponent,
       definition: {
         io: {
           inputs: {},
@@ -49,14 +88,15 @@ const nodes = [
       },
       outputs: {},
       inputs: {},
+      data: {},
     },
-    position: { x: 300, y: 300 },
+    position: { x: 0, y: 350 },
   },
   {
     id: "6",
     type: "custom",
     data: {
-      component: ExampleNodeComponent,
+      component: SliderNodeComponent,
       definition: {
         io: {
           inputs: {},
@@ -65,15 +105,13 @@ const nodes = [
       },
       outputs: {},
       inputs: {},
+      data: {},
     },
-    position: { x: 600, y: 200 },
+    position: { x: 100, y: 200 },
   },
 ] as Node[];
 
-const edges = [
-  { id: "e1-2", source: "1", target: "2" },
-  { id: "e2-3", source: "2", target: "3" },
-] as Edge[];
+const edges = [] as Edge[];
 
 const editorModel: EditorModel = {
   nodes,

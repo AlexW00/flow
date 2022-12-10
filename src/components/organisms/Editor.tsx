@@ -5,14 +5,14 @@ import ReactFlow, {
   Controls,
   MiniMap,
 } from "react-flow-renderer";
+import { areCompatible } from "src/classes/nodes/definition/io/handles/types/NodeHandleType";
+import { selectNode } from "src/data/selectors/editor/selectNode";
 import useAppModel from "src/data/store";
 import { useFlowName } from "src/react/hooks/context/useFlowName";
 import { useGetEdges } from "src/react/hooks/state/getters/useGetEdges";
 import { useGetNodes } from "src/react/hooks/state/getters/useGetNodes";
-
-import { areCompatible } from "../classes/nodes/definition/io/handles/types/NodeHandleType";
-import { selectNode } from "../data/selectors/editor/selectNode";
-import { CustomNodeContainer } from "./nodes/CustomNodeContainer";
+import { NodeComponent } from "./Node";
+import ReactTooltip from "react-tooltip";
 
 export const Editor = () => {
   const flowName = useFlowName();
@@ -21,7 +21,7 @@ export const Editor = () => {
 
   const { onNodesChange, onEdgesChange, onConnect } = useAppModel();
 
-  const nodeTypes = useMemo(() => ({ custom: CustomNodeContainer }), []);
+  const nodeTypes = useMemo(() => ({ custom: NodeComponent }), []);
 
   console.log("Rendering Editor");
 
@@ -44,17 +44,23 @@ export const Editor = () => {
   };
 
   return (
-    <ReactFlow
-      nodeTypes={nodeTypes}
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={(nodeChanges) => onNodesChange(nodeChanges, flowName)}
-      onEdgesChange={(edgeChanges) => onEdgesChange(edgeChanges, flowName)}
-      onConnect={handleConnect}
-    >
-      <MiniMap />
-      <Controls />
-      <Background />
-    </ReactFlow>
+    <>
+      {" "}
+      <ReactFlow
+        nodeTypes={nodeTypes}
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={(nodeChanges) => onNodesChange(nodeChanges, flowName)}
+        onEdgesChange={(edgeChanges) => onEdgesChange(edgeChanges, flowName)}
+        onConnect={handleConnect}
+        fitView
+        snapToGrid
+      >
+        <MiniMap />
+        <Controls />
+        <Background />
+      </ReactFlow>
+      <ReactTooltip />
+    </>
   );
 };

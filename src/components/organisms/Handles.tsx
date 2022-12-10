@@ -1,8 +1,8 @@
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
-import { NodeHandles } from "../../classes/nodes/definition/io/handles/NodeHandles";
+import { NodeHandles } from "src/classes/nodes/definition/io/handles/NodeHandles";
 
-export const CustomNodeHandles = ({
+export const HandlesComponent = ({
   isInput,
   handles,
 }: {
@@ -33,6 +33,7 @@ export const CustomNodeHandles = ({
             top: handleTopOffset,
             background: type.color,
           }}
+          data-tip={"test"}
         />
       );
     });

@@ -1,23 +1,22 @@
 import produce from "immer";
 import { useUpdateNodeInternals } from "react-flow-renderer";
-import NodeHandleType from "src/classes/nodes/definition/io/handles/types/NodeHandleType";
+import { NodeHandles } from "src/classes/nodes/definition/io/handles/NodeHandles";
 import { Setter } from "src/classes/react/StateHookResult";
 import AppModel from "src/data/models/AppModel";
-import { setNodeHandleType } from "src/data/setters/editor/setNodeHandleType";
+import { setNodeHandles } from "src/data/setters/editor/setNodeHandles";
 import useAppModel from "src/data/store";
 import { useFlowName } from "../../context/useFlowName";
+import { useNodeId } from "../../context/useNodeId";
 
-export const useSetNodeHandleType = (
-  isInput: boolean,
-  name: string,
-  nodeId: string
-): Setter<NodeHandleType> => {
+export const useSetNodeHandles = (isInput: boolean): Setter<NodeHandles> => {
   const flowName = useFlowName(),
+    nodeId = useNodeId(),
     updateInternals = useUpdateNodeInternals(),
-    setter = (type: NodeHandleType) => {
+    setter = (handles: NodeHandles) => {
+      console.log("useSetNodeHandles", handles);
       useAppModel.setState(
         produce((draft: AppModel) =>
-          setNodeHandleType(isInput, name, type, nodeId, flowName, draft)
+          setNodeHandles(isInput, handles, nodeId, flowName, draft)
         )
       );
       updateInternals(nodeId);

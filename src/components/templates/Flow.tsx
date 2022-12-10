@@ -1,9 +1,8 @@
 import React from "react";
 import { ReactFlowProvider } from "react-flow-renderer";
-import { FlowNameContext } from "../react/contexts/FlowNameContext";
-import { max } from "../styles/layout";
-
-import { Editor } from "./Editor";
+import { FlowNameContext } from "src/react/contexts/FlowNameContext";
+import { max } from "src/styles/layout";
+import { Editor } from "../organisms/Editor";
 
 export const Flow = () => {
   return (
