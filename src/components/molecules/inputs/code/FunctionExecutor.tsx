@@ -15,7 +15,12 @@ const areEqual = (a: FunctionExecutorProps, b: FunctionExecutorProps) => {
   const codeIsEqual = a.code === b.code,
     paramsDefinitionIsEqual = a.paramsDefinition === b.paramsDefinition,
     paramsDataIsEqual = shallowCompareArrays(a.paramsData, b.paramsData);
-  console.log("eq", codeIsEqual, paramsDefinitionIsEqual, paramsDataIsEqual);
+  console.log(
+    "areEqual",
+    codeIsEqual,
+    paramsDefinitionIsEqual,
+    paramsDataIsEqual
+  );
   return codeIsEqual && paramsDefinitionIsEqual && paramsDataIsEqual;
 };
 
@@ -33,6 +38,7 @@ export const FunctionExecutorComponent = memo(
 
     useEffect(() => {
       onExecuteBegin && onExecuteBegin();
+      console.log("Executing code", code);
       codeExecutor(code, ...paramsData)
         .then((result) => {
           setError(null);

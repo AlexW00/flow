@@ -1,11 +1,15 @@
+const AsyncFunction = Object.getPrototypeOf(
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  async function () {}
+).constructor;
+
 export const useCodeExecutor = (...paramNames: string[]): CodeExecutor => {
   return async (code: string, ...params: any[]) => {
     try {
-      const AsyncFunction = Object.getPrototypeOf(
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        async function () {}
-      ).constructor;
+      console.log("executingggggggggggg", paramNames, params, code);
       const codeExecutor = new AsyncFunction(...paramNames, code);
+      console.log("created executor", codeExecutor);
+
       return codeExecutor(...params);
     } catch (error) {
       return { error };

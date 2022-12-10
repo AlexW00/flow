@@ -1,3 +1,4 @@
+import { Button, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { CustomNodeComponentProps } from "src/classes/nodes/definition/CustomNodeComponent";
 import { AnyHandle } from "src/classes/nodes/definition/io/handles/types/base/AnyHandle";
@@ -29,11 +30,13 @@ export const ExampleNodeComponent = ({
   };
 
   return (
-    <div>
-      <div>Input: {inputs?.input?.toString()}</div>
-      <div>Output: {outputs?.output}</div>
-      <button onClick={onClickButton}>Add "!"</button>
-    </div>
+    <Flex direction="column">
+      <Text>Input: {inputs?.input?.toString()}</Text>
+      <Text>Output: {outputs?.output}</Text>
+      <Button size="xs" onClick={onClickButton}>
+        Add "!"
+      </Button>
+    </Flex>
   );
 };
 

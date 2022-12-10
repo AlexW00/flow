@@ -13,7 +13,7 @@ export const ObjectViewerComponent = ({
       }}
     >
       {/* <ReactJson src={object} enableClipboard={false} /> */}
-      {JSON.stringify(object)} // @todo proper json viewer
+      {JSON.stringify(object)}
     </div>
   );
 };

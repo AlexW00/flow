@@ -1,9 +1,8 @@
-import { Box, Collapse } from "@chakra-ui/react";
+import { Box, Collapse, Flex } from "@chakra-ui/react";
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { NodeProps } from "react-flow-renderer";
 import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
 import { NodeIdContext } from "src/react/contexts/NodeIdContext";
-import { wrapContent } from "src/styles/layout";
 import { DragbarComponent } from "./Dragbar";
 import { HandlesComponent } from "./Handles";
 
@@ -17,15 +16,15 @@ export const NodeComponent: FunctionComponent<NodeProps<CustomNodeData>> = (
 
   return (
     <NodeIdContext.Provider value={props.id}>
-      <div
+      <Flex
         className="custom-node react-flow__node-default"
-        style={{ ...wrapContent, padding: "0" }}
+        style={{ padding: 0, height: "auto", width: "auto" }}
       >
         <HandlesComponent
           isInput={true}
           handles={props.data.definition.io.inputs}
         />
-        <div style={wrapContent}>
+        <Flex direction="column">
           <DragbarComponent
             name={props.data.definition.name}
             isCollapsed={isCollapsed}
@@ -33,7 +32,7 @@ export const NodeComponent: FunctionComponent<NodeProps<CustomNodeData>> = (
           />
 
           <Collapse in={!isCollapsed} animateOpacity>
-            <Box padding={"0.5em"}>
+            <Box margin={"0.5em"}>
               <CustomNodeComponent
                 outputs={props.data.outputs}
                 inputs={props.data.inputs}
@@ -42,8 +41,8 @@ export const NodeComponent: FunctionComponent<NodeProps<CustomNodeData>> = (
               />
             </Box>
           </Collapse>
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
       <HandlesComponent
         isInput={false}

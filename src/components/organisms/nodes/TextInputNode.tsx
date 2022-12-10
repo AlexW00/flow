@@ -1,3 +1,4 @@
+import { Textarea } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { CustomNodeComponentProps } from "src/classes/nodes/definition/CustomNodeComponent";
 import { StringHandle } from "src/classes/nodes/definition/io/handles/types/base/StringHandle";
@@ -5,7 +6,6 @@ import { CustomNodeDefinition } from "src/classes/nodes/definition/NodeDefinitio
 import { useSetData } from "src/react/hooks/state/setters/useSetData";
 import { useSetDefinition } from "src/react/hooks/state/setters/useSetDefinition";
 import { useSetOutput } from "src/react/hooks/state/setters/useSetOutput";
-import { max } from "src/styles/layout";
 
 export const TextInputNodeComponent = ({
   data = "",
@@ -27,10 +27,9 @@ export const TextInputNodeComponent = ({
 
   // textarea
   return (
-    <input
-      style={max}
-      type="text"
-      value={data.value}
+    <Textarea
+      className="nodrag"
+      value={textBuffer}
       onBlur={() => handleTextChange(textBuffer)}
       onChange={(e) => setTextBuffer(e.target.value)}
     />

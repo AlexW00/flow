@@ -1,3 +1,4 @@
+import { Flex, Text } from "@chakra-ui/react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import React from "react";
 
@@ -18,12 +19,9 @@ export const DragbarComponent = ({
     setIsCollapsed(!isCollapsed);
   };
   return (
-    <div
+    <Flex
       style={{
-        display: "flex",
-        flexDirection: "row",
         alignItems: "center",
-        width: "100%",
         height: "1.2rem",
         backgroundColor: color ?? "rgba(0,0,0,0.1)",
         padding: "0.15rem",
@@ -42,7 +40,7 @@ export const DragbarComponent = ({
           style={{ marginRight: "0.15rem" }}
         />
       )}
-      <span>{name}</span>
-    </div>
+      <Text>{name}</Text>
+    </Flex>
   );
 };
