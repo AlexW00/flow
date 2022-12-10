@@ -46,7 +46,7 @@ export const SliderNodeComponent = ({
 
   return (
     <Box>
-      <Box marginTop="0.3rem" marginBottom="0.3rem">
+      <Box marginTop="1rem" marginBottom=".75rem">
         <BasicSliderComponent
           value={outputs.output ?? 0}
           onChange={handleValueChange}

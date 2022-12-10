@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import React from "react";
 
 export const ObjectViewerComponent = ({
@@ -6,14 +7,15 @@ export const ObjectViewerComponent = ({
   object: Record<string, unknown>;
 }) => {
   return (
-    <div
+    <Box
       style={{
         maxWidth: "25em",
         maxHeight: "50em",
       }}
     >
       {/* <ReactJson src={object} enableClipboard={false} /> */}
+      {/* // @todo proper json viewer */}
       {JSON.stringify(object)}
-    </div>
+    </Box>
   );
 };

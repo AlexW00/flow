@@ -75,21 +75,25 @@ const getStyle = (mode: FunctionExecutionMode): React.CSSProperties => {
 
 const defaultStyle: React.CSSProperties = {
   border: "1px solid rgba(0, 0, 0, 0.7)",
+  borderRadius: "0.2em",
   ...wrapContent,
 };
 
 const executingStyle: React.CSSProperties = {
   // light yellow
   border: "1px solid rgba(255, 255, 0, 0.7)",
+  borderRadius: "0.2em",
   ...wrapContent,
 };
 
 const successStyle: React.CSSProperties = {
   border: "1px solid rgba(75, 181, 67, 0.7)",
+  borderRadius: "0.2em",
   ...wrapContent,
 };
 
 const errorStyle: React.CSSProperties = {
   border: "1px solid rgba(178, 34, 34, 0.7)",
+  borderRadius: "0.2em",
   ...wrapContent,
 };

@@ -11,7 +11,7 @@ export const PropertyContainerComponent = ({
   children,
 }: PropertyContainerProps): JSX.Element => {
   return (
-    <Flex direction={"column"}>
+    <Flex direction={"column"} gap=".25em">
       {name && <Text textAlign={"left"}>{name}</Text>}
       {children}
     </Flex>

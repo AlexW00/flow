@@ -1,8 +1,10 @@
+import { Flex } from "@chakra-ui/react";
 import React, { useEffect, useMemo } from "react";
 import { CustomNodeComponentProps } from "src/classes/nodes/definition/CustomNodeComponent";
 import { NodeHandles } from "src/classes/nodes/definition/io/handles/NodeHandles";
 import { AnyHandle } from "src/classes/nodes/definition/io/handles/types/base/AnyHandle";
 import { CustomNodeDefinition } from "src/classes/nodes/definition/NodeDefinition";
+import { CodeGeneratorComponent } from "src/components/molecules/inputs/code/CodeGenerator";
 import { useNodeId } from "src/react/hooks/context/useNodeId";
 import { useSetData } from "src/react/hooks/state/setters/useSetData";
 import { useSetDefinition } from "src/react/hooks/state/setters/useSetDefinition";
@@ -72,7 +74,7 @@ export const FunctionNodeComponent = ({
   };
 
   return (
-    <div>
+    <Flex direction="column" gap={"0.5em"}>
       <FunctionEditorComponent
         params={paramsDefinition}
         code={data.code}
@@ -88,7 +90,14 @@ export const FunctionNodeComponent = ({
         onExecuteSuccess={handleExecuteSuccess}
         onExecuteError={handleExecuteError}
       />
-    </div>
+      <CodeGeneratorComponent
+        paramsDefinition={paramsDefinition}
+        onCodeGenerate={(code) => {
+          console.log("Generated code: " + code);
+          handleCodeChange(code);
+        }}
+      />
+    </Flex>
   );
 };
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { highlight, languages } from "prismjs";
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Editor from "react-simple-code-editor";
 
 export type CodeEditorProps = {
@@ -13,6 +13,11 @@ export type CodeEditorProps = {
 export const CodeEditorComponent = memo(
   ({ code, onChange, onBlur, onFocus }: CodeEditorProps): JSX.Element => {
     const [codeBuffer, setCodeBuffer] = useState(code ?? "");
+    console.log("CodeEditorComponent");
+
+    useEffect(() => {
+      setCodeBuffer(code ?? "");
+    }, [code]);
 
     const handleCodeChange = (newCode: string) => {
       setCodeBuffer(newCode);

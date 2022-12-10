@@ -1,3 +1,9 @@
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from "@chakra-ui/react";
 import React, { memo, useEffect } from "react";
 import { useCodeExecutor } from "src/react/hooks/util/useCodeExecutor";
 import { shallowCompareArrays } from "src/util/shallowCompareArrays";
@@ -51,22 +57,11 @@ export const FunctionExecutorComponent = memo(
     }, [code, paramsDefinition, paramsData]);
 
     return error ? (
-      <div
-        style={{
-          marginTop: "0.25rem",
-          width: "100%",
-          backgroundColor: "rgba(178, 34, 34, 0.2)",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            textAlign: "center",
-          }}
-        >
-          {error?.message?.toString()}
-        </div>
-      </div>
+      <Alert status="error" maxHeight="2.5em" borderRadius="0.3em">
+        <AlertIcon />
+        <AlertTitle>{error.name}:</AlertTitle>
+        <AlertDescription>{error.message}</AlertDescription>
+      </Alert>
     ) : (
       <></>
     );

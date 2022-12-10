@@ -6,10 +6,7 @@ const AsyncFunction = Object.getPrototypeOf(
 export const useCodeExecutor = (...paramNames: string[]): CodeExecutor => {
   return async (code: string, ...params: any[]) => {
     try {
-      console.log("executingggggggggggg", paramNames, params, code);
       const codeExecutor = new AsyncFunction(...paramNames, code);
-      console.log("created executor", codeExecutor);
-
       return codeExecutor(...params);
     } catch (error) {
       return { error };
