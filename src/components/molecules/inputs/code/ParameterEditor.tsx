@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { DynamicInputComponent } from "./DynamicInput";
+import { DynamicInputComponent } from "../../../atoms/inputs/DynamicInput";
 
 export type ParameterEditorProps = {
   value: string[];

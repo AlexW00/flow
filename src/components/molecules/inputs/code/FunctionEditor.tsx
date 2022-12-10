@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { CodeEditorComponent } from "src/components/atoms/CodeEditor";
-import { ParameterEditorComponent } from "src/components/atoms/ParameterEditor";
+import { CodeEditorComponent } from "src/components/atoms/inputs/CodeEditor";
 import { wrapContent } from "src/styles/layout";
+import { ParameterEditorComponent } from "./ParameterEditor";
 
 export enum FunctionExecutionMode {
   Idle,

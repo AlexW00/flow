@@ -1,4 +1,4 @@
-import { Collapse } from "@chakra-ui/react";
+import { Box, Collapse } from "@chakra-ui/react";
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { NodeProps } from "react-flow-renderer";
 import { CustomNodeData } from "src/classes/nodes/CustomNodeData";
@@ -33,12 +33,14 @@ export const NodeComponent: FunctionComponent<NodeProps<CustomNodeData>> = (
           />
 
           <Collapse in={!isCollapsed} animateOpacity>
-            <CustomNodeComponent
-              outputs={props.data.outputs}
-              inputs={props.data.inputs}
-              definition={props.data.definition}
-              data={props.data.data}
-            />
+            <Box padding={"0.5em"}>
+              <CustomNodeComponent
+                outputs={props.data.outputs}
+                inputs={props.data.inputs}
+                definition={props.data.definition}
+                data={props.data.data}
+              />
+            </Box>
           </Collapse>
         </div>
       </div>

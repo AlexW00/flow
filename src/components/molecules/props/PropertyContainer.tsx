@@ -1,5 +1,5 @@
+import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import { max } from "src/styles/layout";
 
 export type PropertyContainerProps = {
   name?: string;
@@ -11,9 +11,9 @@ export const PropertyContainerComponent = ({
   children,
 }: PropertyContainerProps): JSX.Element => {
   return (
-    <div style={max}>
-      {name && <label>{name}</label>}
+    <Flex direction={"column"}>
+      {name && <Text textAlign={"left"}>{name}</Text>}
       {children}
-    </div>
+    </Flex>
   );
 };

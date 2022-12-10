@@ -1,18 +1,14 @@
-import {
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
-} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { CustomNodeComponentProps } from "src/classes/nodes/definition/CustomNodeComponent";
 import { NumberHandle } from "src/classes/nodes/definition/io/handles/types/base/NumberHandle";
 import { CustomNodeDefinition } from "src/classes/nodes/definition/NodeDefinition";
-import { NumberPropertyComponent } from "src/components/molecules/props/NumberProperty";
+import { SliderPropertyComponent } from "src/components/molecules/props/SliderProperty";
 import { PropertyContainerComponent } from "src/components/molecules/props/PropertyContainer";
 import { useSetData } from "src/react/hooks/state/setters/useSetData";
 import { useSetDefinition } from "src/react/hooks/state/setters/useSetDefinition";
 import { useSetOutput } from "src/react/hooks/state/setters/useSetOutput";
+import { BasicSliderComponent } from "src/components/atoms/inputs/BasicSlider";
 
 export const SliderNodeComponent = ({
   outputs,
@@ -49,39 +45,40 @@ export const SliderNodeComponent = ({
   };
 
   return (
-    <>
-      <Slider
-        aria-label="slider-ex-1"
-        className="nodrag"
-        defaultValue={DEFAULT.min}
-        min={data.min ?? DEFAULT.min}
-        max={data.max ?? DEFAULT.max}
-        step={data.step ?? DEFAULT.step}
-        onChange={handleValueChange}
-      >
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb />
-      </Slider>
+    <Box>
+      <Box marginTop="0.3rem" marginBottom="0.3rem">
+        <BasicSliderComponent
+          value={outputs.output ?? 0}
+          onChange={handleValueChange}
+          min={data.min ?? DEFAULT.min}
+          max={data.max ?? DEFAULT.max}
+          step={data.step ?? DEFAULT.step}
+        />
+      </Box>
+
       <PropertyContainerComponent>
-        <NumberPropertyComponent
-          name="Min"
+        <SliderPropertyComponent
+          name="min"
           value={data.min ?? DEFAULT.min}
-          onValueChange={(newValue) => handleMinMaxChange(newValue, true)}
+          step={1}
+          onChange={(value) => handleMinMaxChange(value, true)}
         />
-        <NumberPropertyComponent
-          name="Step"
+
+        <SliderPropertyComponent
+          name="step"
           value={data.step ?? DEFAULT.step}
-          onValueChange={(newValue) => handleStepChange(newValue)}
+          step={1}
+          onChange={handleStepChange}
         />
-        <NumberPropertyComponent
-          name="Max"
+
+        <SliderPropertyComponent
+          name="max"
           value={data.max ?? DEFAULT.max}
-          onValueChange={(newValue) => handleMinMaxChange(newValue, false)}
+          step={1}
+          onChange={(value) => handleMinMaxChange(value, false)}
         />
       </PropertyContainerComponent>
-    </>
+    </Box>
   );
 };
 
